@@ -29,7 +29,7 @@
                 <div class="navbar-nav mr-auto">
                     <a class="nav-item nav-link" href="{% url 'blog-home' %}">Home</a>
                     <a class="nav-item nav-link" href="{% url 'blog-about' %}">About</a>
-                    <a class="nav-item nav-link" href="{% url 'blog-leave' %}">Apply-Leave</a>
+                    
                 </div>
                 <!-- Navbar Right Side -->
                 <div class="navbar-nav">
@@ -37,7 +37,7 @@
                   <a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a>
                   <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
                   {% else %}
-                    <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
+                    <a class="nav-item nav-link" href="{% url 'login' %}">HOD Login</a>
                     <a class="nav-item nav-link" href="{% url 'register' %}">Register</a>
                   {% endif %}
                 </div>
