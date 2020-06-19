@@ -1,2 +1,0 @@
-# Webdevelopment
-Cosc project part
