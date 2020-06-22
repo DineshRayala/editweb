@@ -10,12 +10,16 @@ def home(request):
         'posts':Post.objects.all()
     }
     return render(request, 'blog/home.html',context)
+
+@login_required
 def about(request):
     return render(request, 'blog/about.html',{'title':'About'})
-@login_required
+    
 def applyleave(request):
     return render(request,'blog/applyleave.html')
 
 def table(request):
     return render(request,'blog/table.html')
+
+
 

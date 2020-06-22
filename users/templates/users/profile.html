@@ -1,19 +1,34 @@
-
 {% extends "blog/base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
-    <h1>{{ user.username }}</h1>
-    <h3>Info about user</h3>
-    <form>
-        
-        <h5> Click edit to edit your details </h5>
-      </div>
-      
-    </div>
+    <h1>Your Profile!!</h1>
+    <table class="table table-bordered">
+      <thead class="thead-light">
+        <tr> 
+          <th scope="col">HOD_ID	</th>
+          <th scope="col">HOD_NAME</th>
+          <th scope="col">DEPT_NO</th>
+          <th scope="col">DESG</th>
+          <th scope="col">EMAIL</th>
+          <th scope="col">CONTACT</th>
+          <th scope="col">ADDRESS</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">12301</th>
+          <td>{{ user.username }}</td>
+          <td>20</td>
+          <td>Professor</td>
+          <td>hod_1@cbit.ac.in</td>
+          <td>9988776655</td>
+          <td>Jublie Hills, Hyderabad</td>
+        </tr>
+        </tbody>
+      </table>
+    <form>  
+    <h5> Click below to edit your details </h5>
     <button type="submit" class="btn btn-primary">Edit</button>
-  </form>
+   </form>
 
 {% endblock content %}
-
-
-

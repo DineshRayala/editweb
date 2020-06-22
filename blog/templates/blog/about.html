@@ -1,8 +1,62 @@
 
 {% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
 {% block content %}
-    <h1>About Page!!</h1>
+    <h3>Info about user</h3>
+    <form>
+        <div class="form-group">
+          <label for="checkhistory">Emp id</label>
+          <input type="text" class="form-control" id="checkhistory" aria-describedby="Help" placeholder="Enter employee id">
+          <small id="Help" class="form-text text-muted">Enter id to see the respective employee profile.</small>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+    <table class="table table-bordered">
+        <thead class="thead-light">
+          <tr> 
+            <th scope="col">EMP_ID	</th>
+            <th scope="col">EMP_NAME</th>
+            <th scope="col">DEPTNO</th>
+            <th scope="col">DESG</th>
+            <th scope="col">EMAIL</th>
+            <th scope="col">CONTACT</th>
+            <th scope="col">ADDRESS</th>
+            <th scope="col">NO_OF_LEAVES_LEFT</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">12345</th>
+            <td>EMP_1</td>
+            <td>20</td>
+            <td>Asst.Prof</td>
+            <td>emp_1@cbit.ac.in</td>
+            <td>9876543210</td>
+            <td>Kukatpally, Hyderabad</td>
+            <td>3</td>
+          </tr>
+          </tbody>
+          </table>
+          <form>  
+            <h5> Click below to edit number of leaves of employee</h5>
+            <button type="submit" class="btn btn-primary">Edit</button>
+           </form>
+    
 {% endblock content %}
 
 
+
+
+
+
+ 		INT NOT NULL,
+ 	VARCHAR(20) NOT NULL,
+		INT NOT NULL,
+		VARCHAR(10) NOT NULL,
+		VARCHAR(30) NOT NULL,
+	DECIMAL(10) NOT NULL,
+		VARCHAR(20) NOT NULL,
+		VARCHAR(15) NOT NULL,
+	INT NOT NULL,
 

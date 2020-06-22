@@ -4,46 +4,88 @@
     <thead class="thead-light">
       <tr>
         <th scope="col">S.No.</th>
-        <th scope="col">Emp ID</th>
-        <th scope="col">Emp Name</th>
-        <th scope="col">Email</th>
-        <th scope="col">No. of days</th>
-        <th scope="col">No. of leaves remaining</th>
-        <th scope="col">Reason</th>
+        <th scope="col">EMP_ID	</th>
+        <th scope="col">LEAVE_ID</th>
+        <th scope="col">LEAVE TITLE</th>
+        <th scope="col">START_DATE</th>
+        <th scope="col">END__DATE</th>
+        <th scope="col">NO OF DAYS</th>
+        <th scope="col">LEAVES LEFT</th>
+        <th scope="col">REASON</th>
+        <th scope="col">EMG_LEAVE</th>
         <th scope="col">Leave status</th>
+        <th scope="col">FEEDBACK</th>
+        <th scope="col">Click here to submit</th>
       </tr>
     </thead>
     <tbody>
       <tr>
         <th scope="row">1</th>
         <td>12345</td>
-        <td>Emp_1</td>
-        <td>emp_1@cbit.com</td>
+        <td>20190001</td>
+        <td>Long</td>
+        <td>20-08-2019</td>
+        <td>21-08-2019</td>
+        <td>2</td>
         <td>3</td>
-        <td>10</td>
         <td>Health issues</td>
-        <td>Come to Cabin</td>
+        <td>1</td>
+        <td>2</td>
+        <td>
+          <label for="select">Select</label>
+          <select name="status" id="status">
+          <option value="Grant">Grant</option>
+          <option value="Decline">Decline</option>
+          <option value="Come to cabin">Come to cabin</option>
+          </select>
+      </td>
+      <td><input type="submit" value="Submit"></td>
       </tr>
       <tr>
         <th scope="row">2</th>
         <td>12346</td>
-        <td>Emp_2</td>
-        <td>emp_2@cbit.com</td>
-        <td>2</td>
-        <td>7</td>
+        <td>20190002</td>
+        <td>Short</td>
+        <td>25-08-2019</td>
+        <td>25-08-2019</td>
+        <td>1</td>
+        <td>9</td>
         <td>Fever</td>
-        <td>Granted</td>
+        <td>1</td>
+        <td>1</td>
+        <td>
+          <label for="select">Select</label>
+          <select name="status" id="status">
+          <option value="Grant">Grant</option>
+          <option value="Decline">Decline</option>
+          <option value="Come to cabin">Come to cabin</option>
+          </select>
+      </td>
+      <td><input type="submit" value="Submit"></td>
       </tr>
       <tr>
         <th scope="row">3</th>
         <td>12347</td>
-        <td>Emp_3</td>
-        <td>emp_3@cbit.com</td>
-        <td>1</td>
-        <td>12</td>
+        <td>20190003</td>
+        <td>Long</td>
+        <td>22-08-2019</td>
+        <td>26-08-2019</td>
+        <td>5</td>
+        <td>5</td>
         <td>Personal Work</td>
-        <td>Declined</td>
+        <td>0</td>
+        <td>0</td>
+          <td>
+            <label for="select">Select</label>
+            <select name="status" id="status">
+            <option value="Grant">Grant</option>
+            <option value="Decline">Decline</option>
+            <option value="Come to cabin">Come to cabin</option>
+            </select>
+        </td>
+        <td><input type="submit" value="Submit"></td>
       </tr>
     </tbody>
   </table>
   {% endblock content%}
+
