@@ -15,3 +15,7 @@ def about(request):
 @login_required
 def applyleave(request):
     return render(request,'blog/applyleave.html')
+
+def table(request):
+    return render(request,'blog/table.html')
+

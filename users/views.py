@@ -23,5 +23,10 @@ def register(request):
 def profile(request):
     return render(request,'users/profile.html')
 
+def index(request):
+    data="Hello world"
+    context={'message':data}
+    return render (request,'users/index.html',context)
+
 
 

@@ -1,0 +1,49 @@
+{% extends "blog/base.html" %}
+{%block content%}
+<table class="table table-bordered">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">S.No.</th>
+        <th scope="col">Emp ID</th>
+        <th scope="col">Emp Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">No. of days</th>
+        <th scope="col">No. of leaves remaining</th>
+        <th scope="col">Reason</th>
+        <th scope="col">Leave status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">1</th>
+        <td>12345</td>
+        <td>Emp_1</td>
+        <td>emp_1@cbit.com</td>
+        <td>3</td>
+        <td>10</td>
+        <td>Health issues</td>
+        <td>Come to Cabin</td>
+      </tr>
+      <tr>
+        <th scope="row">2</th>
+        <td>12346</td>
+        <td>Emp_2</td>
+        <td>emp_2@cbit.com</td>
+        <td>2</td>
+        <td>7</td>
+        <td>Fever</td>
+        <td>Granted</td>
+      </tr>
+      <tr>
+        <th scope="row">3</th>
+        <td>12347</td>
+        <td>Emp_3</td>
+        <td>emp_3@cbit.com</td>
+        <td>1</td>
+        <td>12</td>
+        <td>Personal Work</td>
+        <td>Declined</td>
+      </tr>
+    </tbody>
+  </table>
+  {% endblock content%}
