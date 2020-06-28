@@ -2,7 +2,7 @@
 {% extends "blog/base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
-    <h3>Info about user</h3>
+    <h3>Employee Details</h3>
     <form>
         <div class="form-group">
           <label for="checkhistory">Emp id</label>
@@ -42,7 +42,20 @@
             <h5> Click below to edit number of leaves of employee</h5>
             <button type="submit" class="btn btn-primary">Edit</button>
            </form>
-    
+
+
+           <br>
+           <div class="content-section">
+            <h5> Click below to check Attendance of employee</h5> 
+           </div>
+
+          
+<form action="{% url 'index' %}">
+  <button type="submit" class="btn btn-secondary">Attendance</button>
+ 
+</form>
+         
+          
 {% endblock content %}
 
 
@@ -50,13 +63,4 @@
 
 
 
- 		INT NOT NULL,
- 	VARCHAR(20) NOT NULL,
-		INT NOT NULL,
-		VARCHAR(10) NOT NULL,
-		VARCHAR(30) NOT NULL,
-	DECIMAL(10) NOT NULL,
-		VARCHAR(20) NOT NULL,
-		VARCHAR(15) NOT NULL,
-	INT NOT NULL,
-
+ 	
