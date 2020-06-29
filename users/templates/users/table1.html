@@ -1,5 +1,3 @@
-
-{% load crispy_forms_tags %}
 {% load static %}
 <!DOCTYPE html>
 <html>
@@ -59,41 +57,98 @@
                     </div>
                   {% endfor %}
                {% endif %}
-                
-                {% block content %}
-    <h1>Your Profile!!</h1>
-    <table class="table table-bordered">
-      <thead class="thead-light">
-        <tr> 
-          <th scope="col">HOD_ID	</th>
-          <th scope="col">HOD_NAME</th>
-          <th scope="col">DEPT_NO</th>
-          <th scope="col">DESG</th>
-          <th scope="col">EMAIL</th>
-          <th scope="col">CONTACT</th>
-          <th scope="col">ADDRESS</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          { %  for i in details % }
-          <th scope="row">{{i.HODID}}</th>
-          <td>{{ i.HODNAME }}</td>
-          <td>20</td>
-          <td>Professor</td>
-          <td>hod_1@cbit.ac.in</td>
-          <td>9988776655</td>
-          <td>Jublie Hills, Hyderabad</td>
-        </tr>
-        </tbody>
-      </table>
-    <form>  
-    <h5> Click below to edit your details </h5>
-    <button type="submit" class="btn btn-primary">Edit</button>
-   </form>
+               {%block content%}
+<table class="table table-bordered">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">S.No.</th>
+        <th scope="col">EMP_ID	</th>
+        <th scope="col">LEAVE_ID</th>
+        <th scope="col">LEAVE TITLE</th>
+        <th scope="col">START_DATE</th>
+        <th scope="col">END__DATE</th>
+        <th scope="col">NO OF DAYS</th>
+        <th scope="col">LEAVES LEFT</th>
+        <th scope="col">REASON</th>
+        <th scope="col">EMG_LEAVE</th>
+        <th scope="col">Leave status</th>
+        <th scope="col">FEEDBACK</th>
+        <th scope="col">Click here to submit</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for x in data %}
+      <tr>
+        <th scope="row">2</th>
+        <td>{{x.EMP_ID}}</td>
+        <td>{{x.LEAVE_ID}}</td>
+        <td>Long</td>
+        <td>20-08-2019</td>
+        <td>21-08-2019</td>
+        <td>2</td>
+        <td>3</td>
+        <td>Health issues</td>
+        <td>1</td>
+        <td>2</td>
+        <td>
+          <label for="select">Select</label>
+          <select name="status" id="status">
+          <option value="Grant">Grant</option>
+          <option value="Decline">Decline</option>
+          <option value="Come to cabin">Come to cabin</option>
+          </select>
+      </td>
+      <td><input type="submit" value="Submit"></td>
 
-{% endblock content %}
-                
+      </tr>
+      {% endfor %}
+      <tr>
+        <th scope="row">2</th>
+        <td>12346</td>
+        <td>20190002</td>
+        <td>Short</td>
+        <td>25-08-2019</td>
+        <td>25-08-2019</td>
+        <td>1</td>
+        <td>9</td>
+        <td>Fever</td>
+        <td>1</td>
+        <td>1</td>
+        <td>
+          <label for="select">Select</label>
+          <select name="status" id="status">
+          <option value="Grant">Grant</option>
+          <option value="Decline">Decline</option>
+          <option value="Come to cabin">Come to cabin</option>
+          </select>
+      </td>
+      <td><input type="submit" value="Submit"></td>
+      </tr>
+      <tr>
+        <th scope="row">3</th>
+        <td>12347</td>
+        <td>20190003</td>
+        <td>Long</td>
+        <td>22-08-2019</td>
+        <td>26-08-2019</td>
+        <td>5</td>
+        <td>5</td>
+        <td>Personal Work</td>
+        <td>0</td>
+        <td>0</td>
+          <td>
+            <label for="select">Select</label>
+            <select name="status" id="status">
+            <option value="Grant">Grant</option>
+            <option value="Decline">Decline</option>
+            <option value="Come to cabin">Come to cabin</option>
+            </select>
+        </td>
+        <td><input type="submit" value="Submit"></td>
+      </tr>
+    </tbody>
+  </table>
+  {% endblock content%}
                 
                   </div>
                   </div>
@@ -110,4 +165,5 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 </html>
+
 

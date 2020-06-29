@@ -31,17 +31,28 @@ def home(request):
     return render(request, 'blog/home.html',context)
 
 
-@login_required
+
 def about(request):
-    return render(request, 'blog/about.html',{'title':'About'})
+    if(t!=''):
+       return render(request, 'blog/about.html',{'title':'About'})
+    else:
+        return redirect('login')
+    
     
 def applyleave(request):
-    return render(request,'blog/applyleave.html')
+    if(t!=''):
+       return render(request,'blog/applyleave.html')
+    else:
+        return redirect('login')
+    
 
 def table(request):
-    r=requests.get('https://cosc-team-14-restapi.herokuapp.com/empleave')
-    t=r.json()
-    return render(request,'blog/table.html',{'data':t})
+    if(t!=''):
+       return render(request,'blog/table.html')
+    else:
+        return redirect('login')
+
+    
 
 
 

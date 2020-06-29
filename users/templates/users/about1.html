@@ -1,5 +1,4 @@
 
-{% load crispy_forms_tags %}
 {% load static %}
 <!DOCTYPE html>
 <html>
@@ -59,41 +58,66 @@
                     </div>
                   {% endfor %}
                {% endif %}
+               {% load crispy_forms_tags %}
+               {% block content %}
+                   <h3>Employee Details</h3>
+                   <form>
+                       <div class="form-group"> 
+                         <label for="checkhistory">Emp id</label>
+                         <input type="text" class="form-control" name="checkhistory" id='checkhistory' aria-describedby="Help" placeholder="Enter employee id">
+                         <small id="Help" class="form-text text-muted">Enter id to see the respective employee profile.</small>
+                       </div>
+                       <button onclick="myFunction()"
+                        type="submit" class="btn btn-primary">Submit</button>
+                   </form>
+                   
+                   <table class="table table-bordered">
+                       <thead class="thead-light">
+                         <tr> 
+                           <th scope="col">EMP_ID	</th>
+                           <th scope="col">EMP_NAME</th>
+                           <th scope="col">DEPTNO</th>
+                           <th scope="col">DESG</th>
+                           <th scope="col">EMAIL</th>
+                           <th scope="col">CONTACT</th>
+                           <th scope="col">ADDRESS</th>
+                           <th scope="col">NO_OF_LEAVES_LEFT</th>
+                         </tr>
+                       </thead>
+                       <tbody>
+                         <tr>
+                           {% for i in values %}
+                           <th scope="row">{{i.EMPID}}</th>
+                           <td>{{i.EMPNAME}}</td>
+                           <td>{{i.DEPTNO}}</td>
+                           <td>{{i.DESG}}</td>
+                           <td>{{i.EMAIL}}</td>
+                           <td>{{i.CONTACT}}</td>
+                           <td>{{i.ADDRESS}}</td>
+                           <td>{{i.NOLEAVES}}</td>
+                           {% endfor %}
+                         </tr>
+                         </tbody>
+                         </table>
+                         <form>  
+                           <h5> Click below to edit number of leaves of employee</h5>
+                           <button type="submit" class="btn btn-primary">Edit</button>
+                          </form>
+               
+               
+                          <br>
+                          <div class="content-section">
+                           <h5> Click below to check Attendance of employee</h5> 
+                          </div>
+               
+                         
+               <form action="{% url 'index' %}">
+                 <button type="submit" class="btn btn-secondary">Attendance</button>
                 
-                {% block content %}
-    <h1>Your Profile!!</h1>
-    <table class="table table-bordered">
-      <thead class="thead-light">
-        <tr> 
-          <th scope="col">HOD_ID	</th>
-          <th scope="col">HOD_NAME</th>
-          <th scope="col">DEPT_NO</th>
-          <th scope="col">DESG</th>
-          <th scope="col">EMAIL</th>
-          <th scope="col">CONTACT</th>
-          <th scope="col">ADDRESS</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          { %  for i in details % }
-          <th scope="row">{{i.HODID}}</th>
-          <td>{{ i.HODNAME }}</td>
-          <td>20</td>
-          <td>Professor</td>
-          <td>hod_1@cbit.ac.in</td>
-          <td>9988776655</td>
-          <td>Jublie Hills, Hyderabad</td>
-        </tr>
-        </tbody>
-      </table>
-    <form>  
-    <h5> Click below to edit your details </h5>
-    <button type="submit" class="btn btn-primary">Edit</button>
-   </form>
-
-{% endblock content %}
-                
+               </form>
+                        
+                         
+               {% endblock content %}
                 
                   </div>
                   </div>
@@ -111,3 +135,15 @@
 </body>
 </html>
 
+<script>
+function myFunction() {
+  x=document.getElementById("myText").value ;
+}
+console.log(x);
+</script>
+
+
+
+
+
+ 	

@@ -35,18 +35,28 @@ def home(request):
         PASS =request.POST['pwd']
         det = { "HODNAME":HODNAME,"PASS":PASS}
         token = requests.post("https://cosc-team-14-restapi.herokuapp.com/hod_login",det)
+        '''token=token.json()['access_token']
+        data=requests.get("https://cosc-team-14-restapi.herokuapp.com/hod_register",headers={'Authorization':'Bearer{}'.format(token)},data={'routeId':48})
+        return HttpResponse(data)'''
         global p
         p = token.json()
-        
-        if(p['message']=="Invalid credentials"):
-            context={'data':"INVALID CREDENTIALS"}
-            return render(request,'login.html',context)
+        #return render(request,'users/profile.html',{'users':p})
+        if(len(p)!=2):
+              messages.success(request,f'Invalid Credentials')
+              return render(request,'users/login.html')
             #return HttpResponse(p)
+        else:
+            global t
+            global q
+            t=token.json()[" access_token "]
+            q = token.json()["hodname"]
+            return render(request,'users/profile.html',{'users':t})
         '''else:
-            data = requests.get("https://sport-resources-booking-api.herokuapp.com/ResourcesPresent", headers = {'Authorization':f'Bearer {p}'}) 
+            data=requests.get("https://cosc-team-14-restapi.herokuapp.com/hod_register",headers={'Authorization':f'Bearer{p}'})
+             
             res = data.json()
             context={'data': res,}
-            return redirect('resources')'''
+            return redirect('home')'''
         '''elif (request.method)=="GET":
         if(p):
             if(p=="Invalid credentials"):
@@ -57,21 +67,56 @@ def home(request):
             else:'''
         
 
-@login_required
+
 
 def profile(request):
-    #token=requests.post('https://cosc-team-14-restapi.herokuapp.com/login',data={'HODID':HODID,'PASS':PASS})
+    #onclick="myFunction()"
     #token=token.json()['access_token']
     #data=requests.get('https://cosc-team-14-restapi.herokuapp.com/hod_register',headers={'Authorization':'Bearer{}'.format(token)},data={'routeId':48})
 
     #print(data.json)
     #return render(request,'users/profile.html',{'data':t})
-    return render(request,'users/profile.html')
-
+    if(t!=''):
+        data={"HODNAME":q}
+        resp=requests.get('https://cosc-team-14-restapi.herokuapp.com/hod_register',data,headers={'Authorization':f'Bearer {t}'})
+        res=resp.json()
+        return render(request,'users/profile.html',{'users':t,'details':res})
+    else:
+        return redirect('login')
 def index(request):
-    data="Hello world"
-    context={'message':data}
-    return render (request,'users/index.html',context)
+    data=request.GET.get('id')
 
+    return HttpResponse(data)
 
+def about1(request):
+    x=request.GET.get("checkhistory")
+    
+    if(x!=None):
+        data={"EMPID":x}
+        resp=requests.get('https://cosc-team-14-restapi.herokuapp.com/emp_register',data,headers={'Authorization':f'Bearer {t}'})
+        ro=resp.json()
+        return render(request,'users/about1.html',{'values':ro})
+    else:
+        return render(request, 'users/about1.html',{'title':'About'})
+    '''if(p!=''):
+       return render(request, 'users/about1.html',{'title':'About','users':p})
+    else:
+        return redirect('login')'''
+    
+    
+def applyleave(request):
+    if(t!=''):
+       return render(request,'blog/applyleave.html',{'users':t})
+    else:
+        return redirect('login')
+    
+
+def table1(request):
+    if(t!=''):
+       return render(request,'users/table1.html',{'users':t})
+    else:
+        return redirect('login')
+
+def calendar1(request):
+    return render(request,'users/calendar1.html')
 
