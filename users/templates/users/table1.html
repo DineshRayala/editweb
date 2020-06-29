@@ -57,95 +57,51 @@
                     </div>
                   {% endfor %}
                {% endif %}
+               <form>
+                <div class="form-group"> 
+                  <label for="checkhistory">Department id</label>
+                  <input type="text" class="form-control" name="checkhistory" id='checkhistory' aria-describedby="Help" placeholder="Enter Department id">
+                  <small id="Help" class="form-text text-muted">Enter your department id to see the leave applications.</small>
+                </div>
+                <button onclick="myFunction1()"
+                 type="submit" class="btn btn-primary">Submit</button>
+            </form>
                {%block content%}
 <table class="table table-bordered">
     <thead class="thead-light">
       <tr>
-        <th scope="col">S.No.</th>
+        
         <th scope="col">EMP_ID	</th>
         <th scope="col">LEAVE_ID</th>
         <th scope="col">LEAVE TITLE</th>
         <th scope="col">START_DATE</th>
         <th scope="col">END__DATE</th>
         <th scope="col">NO OF DAYS</th>
-        <th scope="col">LEAVES LEFT</th>
         <th scope="col">REASON</th>
         <th scope="col">EMG_LEAVE</th>
-        <th scope="col">Leave status</th>
-        <th scope="col">FEEDBACK</th>
-        <th scope="col">Click here to submit</th>
+        <th scope="col">Click here for profile</th>
       </tr>
     </thead>
     <tbody>
-      {% for x in data %}
-      <tr>
-        <th scope="row">2</th>
-        <td>{{x.EMP_ID}}</td>
-        <td>{{x.LEAVE_ID}}</td>
-        <td>Long</td>
-        <td>20-08-2019</td>
-        <td>21-08-2019</td>
-        <td>2</td>
-        <td>3</td>
-        <td>Health issues</td>
-        <td>1</td>
-        <td>2</td>
-        <td>
-          <label for="select">Select</label>
-          <select name="status" id="status">
-          <option value="Grant">Grant</option>
-          <option value="Decline">Decline</option>
-          <option value="Come to cabin">Come to cabin</option>
-          </select>
-      </td>
-      <td><input type="submit" value="Submit"></td>
-
+     
+        {% for i in values %}
+        <tr>
+        <th scope="row">{{i.EMPID}}</th>
+        <td>{{i.LEAVE_ID}}</td>
+        <td>{{i.LEAVETITLE}}</td>
+        <td>{{i.STDATE}}</td>
+        <td>{{i.ENDDATE}}</td>
+        <td>{{i.NOOFDAYS}}</td>
+        <td>{{i.REASON}}</td>
+        <td>{{i.EMGLEAVE}}</td>
+        <td><a href="about1/?checkhistory={{i.EMPID}}&leave_id={{i.LEAVE_ID}}" ><input type="submit" value="Profile"></a></td>
       </tr>
-      {% endfor %}
-      <tr>
-        <th scope="row">2</th>
-        <td>12346</td>
-        <td>20190002</td>
-        <td>Short</td>
-        <td>25-08-2019</td>
-        <td>25-08-2019</td>
-        <td>1</td>
-        <td>9</td>
-        <td>Fever</td>
-        <td>1</td>
-        <td>1</td>
-        <td>
-          <label for="select">Select</label>
-          <select name="status" id="status">
-          <option value="Grant">Grant</option>
-          <option value="Decline">Decline</option>
-          <option value="Come to cabin">Come to cabin</option>
-          </select>
-      </td>
-      <td><input type="submit" value="Submit"></td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td>12347</td>
-        <td>20190003</td>
-        <td>Long</td>
-        <td>22-08-2019</td>
-        <td>26-08-2019</td>
-        <td>5</td>
-        <td>5</td>
-        <td>Personal Work</td>
-        <td>0</td>
-        <td>0</td>
-          <td>
-            <label for="select">Select</label>
-            <select name="status" id="status">
-            <option value="Grant">Grant</option>
-            <option value="Decline">Decline</option>
-            <option value="Come to cabin">Come to cabin</option>
-            </select>
-        </td>
-        <td><input type="submit" value="Submit"></td>
-      </tr>
+        {% endfor %}
+      
+      
+      
+      
+      
     </tbody>
   </table>
   {% endblock content%}
@@ -165,5 +121,13 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 </html>
+
+
+<script>
+  function myFunction1() {
+    x=document.getElementById("myText").value ;
+  }
+  console.log(x);
+  </script>
 
 

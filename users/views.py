@@ -25,7 +25,7 @@ def register(request):
             data={"HODID":HODID,"HODNAME":HODNAME,"DEPTNO":DEPTNO,"DESG":DESG,"EMAIL":EMAIL,"CONTACT":CONTACT,"ADDRESS":ADDRESS,"PASS":PASS}
             resp=requests.post('https://cosc-team-14-restapi.herokuapp.com/hod_register',data)
             messages.success(request, f'Your account has been created! You are now able to log in')
-            return HttpResponse(resp.text)
+            render(request,'users/profile.html')
     else:
         form=UserRegisterForm()
     return render(request,'users/register.html',{'form':form})
@@ -90,12 +90,12 @@ def index(request):
 
 def about1(request):
     x=request.GET.get("checkhistory")
-    
+    y=request.GET.get("leave_id")
     if(x!=None):
         data={"EMPID":x}
         resp=requests.get('https://cosc-team-14-restapi.herokuapp.com/emp_register',data,headers={'Authorization':f'Bearer {t}'})
         ro=resp.json()
-        return render(request,'users/about1.html',{'values':ro})
+        return render(request,'users/about1.html',{'values':ro,"leave_id":y})
     else:
         return render(request, 'users/about1.html',{'title':'About'})
     '''if(p!=''):
@@ -105,6 +105,7 @@ def about1(request):
     
     
 def applyleave(request):
+    
     if(t!=''):
        return render(request,'blog/applyleave.html',{'users':t})
     else:
@@ -112,10 +113,32 @@ def applyleave(request):
     
 
 def table1(request):
-    if(t!=''):
-       return render(request,'users/table1.html',{'users':t})
+    '''resp=requests.get('https://cosc-team-14-restapi.herokuapp.com/empleave',headers={'Authorization':f'Bearer {t}'})
+    ro=resp.json()
+    return render(request,'users/table1.html',{'values':ro})'''
+    #return render(request,'users/table1.html')
+    x=request.GET.get("checkhistory")
+    
+    if(x!=None):
+        data={"DEPTNO":x}
+        resp=requests.get('https://cosc-team-14-restapi.herokuapp.com/empleave',data,headers={'Authorization':f'Bearer {t}'})
+        ro=resp.json()
+        return render(request,'users/table1.html',{'values':ro})
     else:
-        return redirect('login')
+        return render(request, 'users/table1.html')
+    '''if(p!=''):
+       return render(request, 'users/about1.html',{'title':'About','users':p})'''
+    
+def home3(request):
+    LEAVE_MSG=request.GET.get("LEAVE_MSG")
+    LEAVE_ID=request.GET.get("LEAVE_ID")
+    LEAVE_STAT=request.GET.get("LEAVE_STAT")
+    data={"LEAVE_MSG":LEAVE_MSG,"LEAVE_ID":LEAVE_ID,"LEAVE_STAT":LEAVE_STAT}
+    resp=requests.post('https://cosc-team-14-restapi.herokuapp.com/leaveapproval',data,headers={'Authorization':f'Bearer {t}'})
+    return HttpResponse(resp.text)
+
+
+   
 
 def calendar1(request):
     return render(request,'users/calendar1.html')

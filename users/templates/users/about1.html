@@ -75,7 +75,9 @@
                        <thead class="thead-light">
                          <tr> 
                            <th scope="col">EMP_ID	</th>
+                           <th scope="col">LEAVE_ID</th>
                            <th scope="col">EMP_NAME</th>
+                           
                            <th scope="col">DEPTNO</th>
                            <th scope="col">DESG</th>
                            <th scope="col">EMAIL</th>
@@ -88,6 +90,7 @@
                          <tr>
                            {% for i in values %}
                            <th scope="row">{{i.EMPID}}</th>
+                           <th scope="row">{%if leave_id%}{{leave_id}}{% endif %}</th>
                            <td>{{i.EMPNAME}}</td>
                            <td>{{i.DEPTNO}}</td>
                            <td>{{i.DESG}}</td>
@@ -100,6 +103,8 @@
                          </tbody>
                          </table>
                          <form>  
+                           <h3>Employee Details</h3>
+                  
                            <h5> Click below to edit number of leaves of employee</h5>
                            <button type="submit" class="btn btn-primary">Edit</button>
                           </form>
@@ -115,6 +120,9 @@
                  <button type="submit" class="btn btn-secondary">Attendance</button>
                 
                </form>
+               <button type="button" class="btn"><a href="home3?LEAVE_MSG=rejected&LEAVE_ID={{leave_id}}&LEAVE_STAT=0">REJECT</a></button>
+               <button type="button" class="btn"><a href="home3?LEAVE_MSG=accepted&LEAVE_ID={{leave_id}}&LEAVE_STAT=1">ACCEPT</a></button>
+               <button type="button" class="btn"><a href="home3?LEAVE_MSG=come to cabin&LEAVE_ID={{leave_id}}&LEAVE_STAT=2">COME TO CABIN</a></button>
                         
                          
                {% endblock content %}
