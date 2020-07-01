@@ -76,21 +76,22 @@
       </thead>
       <tbody>
         <tr>
-          { %  for i in details % }
+          {% for i in details %}
           <th scope="row">{{i.HODID}}</th>
           <td>{{ i.HODNAME }}</td>
-          <td>20</td>
-          <td>Professor</td>
-          <td>hod_1@cbit.ac.in</td>
-          <td>9988776655</td>
-          <td>Jublie Hills, Hyderabad</td>
+          <td>{{ i.DEPTNO }}</td>
+          <td>{{ i.DESG }}</td>
+          <td>{{ i.EMAIL }}</td>
+          <td>{{ i.CONTACT }}</td>
+          <td>{{ i.ADDRESS }}</td>
+          {% endfor %}
         </tr>
         </tbody>
       </table>
-    <form>  
+    <!--<form>  
     <h5> Click below to edit your details </h5>
     <button type="submit" class="btn btn-primary">Edit</button>
-   </form>
+   </form>-->
 
 {% endblock content %}
                 

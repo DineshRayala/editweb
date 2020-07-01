@@ -36,7 +36,9 @@ urlpatterns = [
     path('',include('blog.urls')),
     path('about1/index',user_views.index,name='about1/index'),
     path('table1/about1/',user_views.about1,name='table1/about1/'),
-    path('table1/about1/home3/',user_views.home3,name='table1/about1/home3/')
+    path('table1/about1/home3/',user_views.home3,name='table1/about1/home3/'),
+    path('table1/about1/hi',user_views.setleaves,name="table1/about1/hi"),
+    path('hi',user_views.hi,name='hi')
     
     
 ]

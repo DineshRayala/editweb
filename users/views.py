@@ -50,7 +50,10 @@ def home(request):
             global q
             t=token.json()[" access_token "]
             q = token.json()["hodname"]
-            return render(request,'users/profile.html',{'users':t})
+            data={"HODNAME":q}
+            resp=requests.get('https://cosc-team-14-restapi.herokuapp.com/hod_register',data,headers={'Authorization':f'Bearer {t}'})
+            res=resp.json()
+            return render(request,'users/profile.html',{'users':t,'details':res})
         '''else:
             data=requests.get("https://cosc-team-14-restapi.herokuapp.com/hod_register",headers={'Authorization':f'Bearer{p}'})
              
@@ -80,6 +83,7 @@ def profile(request):
         data={"HODNAME":q}
         resp=requests.get('https://cosc-team-14-restapi.herokuapp.com/hod_register',data,headers={'Authorization':f'Bearer {t}'})
         res=resp.json()
+        
         return render(request,'users/profile.html',{'users':t,'details':res})
     else:
         return redirect('login')
@@ -89,13 +93,28 @@ def index(request):
     return HttpResponse(data)
 
 def about1(request):
+    global x
     x=request.GET.get("checkhistory")
     y=request.GET.get("leave_id")
+    z=request.GET.get("checkhistory1")
+    if(x!=None and z!=None):
+        data={"EMPID":x}
+        data2={"LEAVE_ID":z}
+        resp=requests.get('https://cosc-team-14-restapi.herokuapp.com/emp_register',data,headers={'Authorization':f'Bearer {t}'})
+        ro=resp.json()
+        resp1=requests.get('https://cosc-team-14-restapi.herokuapp.com/leaveidinfo',data2,headers={'Authorization':f'Bearer {t}'})
+        ro1=resp1.json()
+        return render(request,'users/about1.html',{'values':ro,'values1':ro1,"leave_id":y})
     if(x!=None):
         data={"EMPID":x}
         resp=requests.get('https://cosc-team-14-restapi.herokuapp.com/emp_register',data,headers={'Authorization':f'Bearer {t}'})
         ro=resp.json()
         return render(request,'users/about1.html',{'values':ro,"leave_id":y})
+    if(z!=None):
+        data={"LEAVE_ID":z}
+        resp=requests.get('https://cosc-team-14-restapi.herokuapp.com/leaveidinfo',data,headers={'Authorization':f'Bearer {t}'})
+        ro1=resp.json()
+        return render(request,'users/about1.html',{'values1':ro1,"leave_id":z})
     else:
         return render(request, 'users/about1.html',{'title':'About'})
     '''if(p!=''):
@@ -113,17 +132,18 @@ def applyleave(request):
     
 
 def table1(request):
-    '''resp=requests.get('https://cosc-team-14-restapi.herokuapp.com/empleave',headers={'Authorization':f'Bearer {t}'})
+    '''resp=requests.get('https://cosc-team-14-restapi.herokuapp.com/deptleave',headers={'Authorization':f'Bearer {t}'})
     ro=resp.json()
     return render(request,'users/table1.html',{'values':ro})'''
     #return render(request,'users/table1.html')
     x=request.GET.get("checkhistory")
-    
+
     if(x!=None):
         data={"DEPTNO":x}
-        resp=requests.get('https://cosc-team-14-restapi.herokuapp.com/empleave',data,headers={'Authorization':f'Bearer {t}'})
+        resp=requests.get('https://cosc-team-14-restapi.herokuapp.com/deptleave',data,headers={'Authorization':f'Bearer {t}'})
         ro=resp.json()
         return render(request,'users/table1.html',{'values':ro})
+
     else:
         return render(request, 'users/table1.html')
     '''if(p!=''):
@@ -135,11 +155,31 @@ def home3(request):
     LEAVE_STAT=request.GET.get("LEAVE_STAT")
     data={"LEAVE_MSG":LEAVE_MSG,"LEAVE_ID":LEAVE_ID,"LEAVE_STAT":LEAVE_STAT}
     resp=requests.post('https://cosc-team-14-restapi.herokuapp.com/leaveapproval',data,headers={'Authorization':f'Bearer {t}'})
-    return HttpResponse(resp.text)
+
+    messages.success(request, f'Leave status updated')
+    return render(request,'users/about1.html')
+    
 
 
    
 
 def calendar1(request):
-    return render(request,'users/calendar1.html')
+    data={"EMPID":x}
+    resp=requests.get('https://cosc-team-14-restapi.herokuapp.com/empattendence',data,headers={'Authorization':f'Bearer {t}'})
+    ro3=resp.json()
+    return render(request,'users/cal.html',{'color':ro3})
 
+def setleaves(request):
+    EMPID=request.GET.get("checkhistory2")
+    NOLEAVES=request.GET.get("checkhistory3")
+    data={"EMPID":EMPID,"NOLEAVES":NOLEAVES}
+    resp=requests.post('https://cosc-team-14-restapi.herokuapp.com/updatebyhod',data,headers={'Authorization':f'Bearer {t}'})
+    data={"EMPID":EMPID}
+    resp=requests.get('https://cosc-team-14-restapi.herokuapp.com/emp_register',data,headers={'Authorization':f'Bearer {t}'})
+    ro=resp.json()
+    messages.success(request, f'Number of leaves updated successfully')
+    
+    return render(request,'users/about1.html',{'values':ro})
+    #return render(request,'users/about1.html')
+def hi(request):
+    return render(request,'users/cal.html')
