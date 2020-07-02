@@ -52,6 +52,53 @@ def table(request):
     else:
         return redirect('login')
 
+
+def civil(request):
+    return render(request,'blog/details/civil.html')
+
+def mech(request):
+    return render(request,'blog/details/mech.html')
+
+def bio(request):
+    return render(request,'blog/details/bio.html')
+    
+def ce(request):
+    return render(request,'blog/details/ce.html')
+
+def chem(request):
+    return render(request,'blog/details/chem.html')
+
+def cse(request):
+    return render(request,'blog/details/cse.html')
+
+def ece(request):
+    return render(request,'blog/details/ece.html')
+
+def eee(request):
+    return render(request,'blog/details/eee.html')
+
+def eng(request):
+    return render(request,'blog/details/eng.html')
+
+def it(request):
+    return render(request,'blog/details/it.html')
+
+def management(request):
+    return render(request,'blog/details/management.html')
+
+def math(request):
+    return render(request,'blog/details/math.html')
+
+def mca(request):
+    return render(request,'blog/details/mca.html')
+
+def phy(request):
+    return render(request,'blog/details/phy.html')
+
+def phyedu(request):
+    return render(request,'blog/details/phyedu.html')
+
+
     
 
 

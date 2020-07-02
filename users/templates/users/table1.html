@@ -19,9 +19,13 @@
 </head>
 <body>
         <header class="site-header">
-            <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+            <nav class="navbar navbar-expand-md navbar-dark bg-info fixed-top">
             <div class="container">
-                <a class="navbar-brand mr-4" href="{% url 'blog-home' %}">Staff Leave Applications</a>
+              <a class="navbar-brand mr-4" href="{% url 'blog-home' %}"><img src="https://www.cbit.ac.in/wp-content/themes/CBIT/images/logo.png"
+                alt='Staff Leave Applications'  height='120'
+               >
+                
+              </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
                 </button>
@@ -57,28 +61,30 @@
                     </div>
                   {% endfor %}
                {% endif %}
+               <br><br><br>
                <form>
                 <div class="form-group"> 
-                  <label for="checkhistory">Department id</label>
+                  <h2><label for="checkhistory" class="heading">Department id</label></h2>
                   <input type="text" class="form-control" name="checkhistory" id='checkhistory' aria-describedby="Help" placeholder="Enter Department id">
                   <small id="Help" class="form-text text-muted">Enter your department id to see the leave applications.</small>
                 </div>
                 <button onclick="myFunction1()"
                  type="submit" class="btn btn-primary">Submit</button>
             </form>
+            <br>
                {%block content%}
-<table class="table table-bordered">
-    <thead class="thead-light">
+<table class="table table-bordered table-light table-striped">
+    <thead >
       <tr>
         
-        <th scope="col">EMP_ID	</th>
-        <th scope="col">LEAVE_ID</th>
-        <th scope="col">LEAVE TITLE</th>
-        <th scope="col">START_DATE</th>
-        <th scope="col">END__DATE</th>
-        <th scope="col">NO OF DAYS</th>
-        <th scope="col">REASON</th>
-        <th scope="col">EMG_LEAVE</th>
+        <th scope="col" class="tablehead">EMP_ID	</th>
+        <th scope="col" class="tablehead">LEAVE_ID</th>
+        <th scope="col" class="tablehead">LEAVE TITLE</th>
+        <th scope="col" class="tablehead">START_DATE</th>
+        <th scope="col" class="tablehead">END__DATE</th>
+        <th scope="col" class="tablehead">NO OF DAYS</th>
+        <th scope="col" class="tablehead">REASON</th>
+        <th scope="col" class="tablehead">EMG_LEAVE</th>
         <th scope="col">Click here for profile</th>
       </tr>
     </thead>

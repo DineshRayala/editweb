@@ -97,6 +97,8 @@ def about1(request):
     x=request.GET.get("checkhistory")
     y=request.GET.get("leave_id")
     z=request.GET.get("checkhistory1")
+    p=request.GET.get("approval")
+    c=request.GET.get("modify")
     if(x!=None and z!=None):
         data={"EMPID":x}
         data2={"LEAVE_ID":z}
@@ -114,7 +116,37 @@ def about1(request):
         data={"LEAVE_ID":z}
         resp=requests.get('https://cosc-team-14-restapi.herokuapp.com/leaveidinfo',data,headers={'Authorization':f'Bearer {t}'})
         ro1=resp.json()
+        print(ro1)
         return render(request,'users/about1.html',{'values1':ro1,"leave_id":z})
+    if(p!=None and c!=None):
+        
+        data={"LEAVE_ID":p}
+        
+        resp=requests.get('https://cosc-team-14-restapi.herokuapp.com/leaveapproval',data,headers={'Authorization':f'Bearer {t}'})
+        info=resp.json()
+        print(info)
+        
+        if(info[0][3]==3):
+
+
+            data={"LEAVE_ID":p,"LEAVE_MSG":c,"LEAVE_STAT":"1" if c=="ACCEPTED" else "2"}
+            resp=requests.post('https://cosc-team-14-restapi.herokuapp.com/leaveapproval',data,headers={'Authorization':f'Bearer {t}'})
+            info=resp.json()
+            print(info)
+            messages.success(request, f'Modified leave message successfully')
+            return render(request,'users/about1.html',{"info":info})
+        return render(request,'users/about1.html',{"info":info})
+    if (p!=None):
+        data={"LEAVE_ID":p}
+        
+        resp=requests.get('https://cosc-team-14-restapi.herokuapp.com/leaveapproval',data,headers={'Authorization':f'Bearer {t}'})
+        info=resp.json()
+        print(info)
+        return render(request,'users/about1.html',{"info":info})
+
+   
+        
+        
     else:
         return render(request, 'users/about1.html',{'title':'About'})
     '''if(p!=''):
@@ -149,7 +181,7 @@ def table1(request):
     '''if(p!=''):
        return render(request, 'users/about1.html',{'title':'About','users':p})'''
     
-def home3(request):
+def home3(request): 
     LEAVE_MSG=request.GET.get("LEAVE_MSG")
     LEAVE_ID=request.GET.get("LEAVE_ID")
     LEAVE_STAT=request.GET.get("LEAVE_STAT")

@@ -10,6 +10,7 @@
 
    <!-- Bootstrap CSS -->
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
    <link rel="stylesheet" type="text/css" href="{% static 'blog/main.css' %}">
 
     {% if title %}
@@ -20,9 +21,13 @@
 </head>
 <body>
         <header class="site-header">
-            <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+          <nav class="navbar navbar-expand-md navbar-dark bg-info fixed-top">
             <div class="container">
-                <a class="navbar-brand mr-4" href="{% url 'blog-home' %}">Staff Leave Applications</a>
+              <a class="navbar-brand mr-4" href="{% url 'blog-home' %}"><img src="https://www.cbit.ac.in/wp-content/themes/CBIT/images/logo.png"
+                alt='Staff Leave Applications'  height='120'
+               >
+                
+              </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
                 </button>
@@ -57,10 +62,13 @@
                         {{ message }}
                     </div>
                   {% endfor %}
+                  <br><br><br>
                {% endif %}
+              
                {% load crispy_forms_tags %}
                {% block content %}
-                   <h3>Employee Details</h3>
+               <br><br><br>
+                   <h3 class="heading">Employee Details</h3>
                    <form>
                        <div class="form-group"> 
                          <label for="checkhistory">Emp id</label>
@@ -71,19 +79,19 @@
                         type="submit" class="btn btn-primary">Submit</button>
                    </form>
                    
-                   <table class="table table-bordered">
+                   <table class="table table-bordered ">
                        <thead class="thead-light">
                          <tr> 
-                           <th scope="col">EMP_ID	</th>
-                           <th scope="col">LEAVE_ID</th>
-                           <th scope="col">EMP_NAME</th>
+                           <th scope="col" class="tablehead">EMP_ID	</th>
+                           <th scope="col" class="tablehead">LEAVE_ID</th>
+                           <th scope="col" class="tablehead">EMP_NAME</th>
                            
-                           <th scope="col">DEPTNO</th>
-                           <th scope="col">DESG</th>
-                           <th scope="col">EMAIL</th>
-                           <th scope="col">CONTACT</th>
-                           <th scope="col">ADDRESS</th>
-                           <th scope="col">NO_OF_LEAVES_LEFT</th>
+                           <th scope="col" class="tablehead">DEPTNO</th>
+                           <th scope="col" class="tablehead">DESG</th>
+                           <th scope="col" class="tablehead">EMAIL</th>
+                           <th scope="col" class="tablehead">CONTACT</th>
+                           <th scope="col" class="tablehead">ADDRESS</th>
+                           <th scope="col" class="tablehead">NO_OF_LEAVES_LEFT</th>
                          </tr>
                        </thead>
                        <tbody>
@@ -102,7 +110,7 @@
                          </tr>
                          </tbody>
                          </table>
-                         <h3>Leave Details</h3>
+                         <h3 class="heading">Leave Details</h3>
                    <form>
                        <div class="form-group"> 
                          <label for="checkhistory1">Leave id</label>
@@ -116,14 +124,14 @@
                     <thead class="thead-light">
                       <tr>
         
-                        <th scope="col">EMP_ID	</th>
-                        <th scope="col">LEAVE_ID</th>
-                        <th scope="col">LEAVE TITLE</th>
-                        <th scope="col">START_DATE</th>
-                        <th scope="col">END__DATE</th>
-                        <th scope="col">NO OF DAYS</th>
-                        <th scope="col">REASON</th>
-                        <th scope="col">EMG_LEAVE</th>
+                        <th scope="col" class="tablehead">EMP_ID	</th>
+                        <th scope="col" class="tablehead">LEAVE_ID</th>
+                        <th scope="col" class="tablehead">LEAVE TITLE</th>
+                        <th scope="col" class="tablehead">START_DATE</th>
+                        <th scope="col" class="tablehead">END__DATE</th>
+                        <th scope="col" class="tablehead">NO OF DAYS</th>
+                        <th scope="col" class="tablehead">REASON</th>
+                        <th scope="col" class="tablehead">EMG_LEAVE</th>
                         
                       </tr>
                     </thead>
@@ -149,8 +157,8 @@
                     <button type="button" class="btn"><a href="home3?LEAVE_MSG=rejected&LEAVE_ID={{leave_id}}&LEAVE_STAT=0">REJECT</a></button>
                     <button type="button" class="btn"><a href="home3?LEAVE_MSG=accepted&LEAVE_ID={{leave_id}}&LEAVE_STAT=1">ACCEPT</a></button>
                     <button type="button" class="btn"><a href="home3?LEAVE_MSG=come to cabin&LEAVE_ID={{leave_id}}&LEAVE_STAT=2">COME TO CABIN</a></button>
-
-                      <h3>Leaves left</h3>
+                      <br>
+                      <h3 class="tablehead">Leaves left</h3>
                    <form action='hi'>
                      
                        <div class="form-group"> 
@@ -166,14 +174,34 @@
                
                
                           <br>
-                          <div class="content-section">
-                           <h5> Click below to check Attendance of employee</h5> 
-                          </div>
+                          
+                           <h5 class="tablehead"> Click below to check Attendance of employee</h5> 
+                          
                
                          
                <form action="{% url 'calendar1' %}">
                  <button type="submit" class="btn btn-secondary">Attendance</button>
                 </form>
+                <form>
+                  <div class="form-group"> 
+                    <label for="approval" class="tablehead"><h4>Leave id</h4></label>
+                    <input type="text" class="form-control" name="approval" id='approval' aria-describedby="Help" placeholder="Enter Leave id">
+                    <small id="Help" class="form-text text-muted">Enter Leave id to modify the Leave status of that employee.</small>
+                    <input type="text" class="form-control" name="modify" id='modify' aria-describedby="Help" placeholder="Enter Leave Message">
+                  </div>
+                  <button onclick="myFunction1()"
+                   type="submit" class="btn btn-primary">Submit</button>
+                   
+                  {%for i in info%}
+                   <h5>Leave id: {{i.LEAVE_ID}}</h5>
+                    <h5>Leave message: {{i.LEAVE_MSG}}</h5>
+                    <h5>Leave Status:{{i.LEAVE_STAT}}</h5>
+                   {%endfor%}
+                   
+                   
+                    
+              </form>
+
               
                         
                          
@@ -181,6 +209,7 @@
                 
                   </div>
                   </div>
+                  
 
           </main>
           
