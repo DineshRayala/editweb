@@ -76,6 +76,12 @@
         var j=new Date(endvalue[i].innerText)
         globaldata.push({d:new Date(endvalue[i].innerText),background:color})
     }
+    for(var i=0;i<datevalue.length;i++)
+    {
+        let color='red'
+        var j=new Date(datevalue[i].innerText)
+        globaldata.push({d:new Date(datevalue[i].innerText),background:color})
+    }
     var now = new Date();
     
     mobiscroll.form('#md-form');

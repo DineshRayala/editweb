@@ -25,7 +25,7 @@ def register(request):
             data={"HODID":HODID,"HODNAME":HODNAME,"DEPTNO":DEPTNO,"DESG":DESG,"EMAIL":EMAIL,"CONTACT":CONTACT,"ADDRESS":ADDRESS,"PASS":PASS}
             resp=requests.post('https://cosc-team-14-restapi.herokuapp.com/hod_register',data)
             messages.success(request, f'Your account has been created! You are now able to log in')
-            render(request,'users/profile.html')
+            render(request,'users/login.html')
     else:
         form=UserRegisterForm()
     return render(request,'users/register.html',{'form':form})
@@ -126,14 +126,17 @@ def about1(request):
         info=resp.json()
         print(info)
         
-        if(info[0][3]==3):
+        if(info[0]['LEAVE_STAT']==2):
 
-
-            data={"LEAVE_ID":p,"LEAVE_MSG":c,"LEAVE_STAT":"1" if c=="ACCEPTED" else "2"}
-            resp=requests.post('https://cosc-team-14-restapi.herokuapp.com/leaveapproval',data,headers={'Authorization':f'Bearer {t}'})
+            if c=="ACCEPTED":
+              data={"LEAVE_ID":p,"LEAVE_MSG":c,"LEAVE_STAT":"1"  }
+            else:
+                data={"LEAVE_ID":p,"LEAVE_MSG":c,"LEAVE_STAT":"0"  }
+            resp=requests.post('https://cosc-team-14-restapi.herokuapp.com/leaveapprovalupdate',data,headers={'Authorization':f'Bearer {t}'})
             info=resp.json()
-            print(info)
-            messages.success(request, f'Modified leave message successfully')
+            '''print(info)
+            return HttpResponse(resp)'''
+            messages.success(request, f'Modified leave status successfully')
             return render(request,'users/about1.html',{"info":info})
         return render(request,'users/about1.html',{"info":info})
     if (p!=None):
@@ -199,6 +202,7 @@ def calendar1(request):
     data={"EMPID":x}
     resp=requests.get('https://cosc-team-14-restapi.herokuapp.com/empattendence',data,headers={'Authorization':f'Bearer {t}'})
     ro3=resp.json()
+    
     return render(request,'users/cal.html',{'color':ro3})
 
 def setleaves(request):
